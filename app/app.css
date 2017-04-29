@@ -2,6 +2,11 @@
 #product{
   padding: 6px;
 }
+#orderTot{
+
+  float: bottom;
+  margin-top: 250px;
+}
 
 #prodcat{
   width:100px;
@@ -16,6 +21,9 @@
 #prodcat img{
   height: 70px;
   width: 70px;
+}
+#prodcat input{
+  width: 25px;
 }
 .menu {
   list-style: none;

@@ -16,6 +16,7 @@ app.controller('View1Ctrl', function($scope) {
       {
           name: "Apple",
           price: 1.00,
+          quantity: 0,
           taxRate: 0.13,
           image: "images/apple.jpg",
           maxQuantityPerOrder: 5
@@ -23,6 +24,7 @@ app.controller('View1Ctrl', function($scope) {
       {
           name: "Orange",
           price: 1.25,
+          quantity: 0,
           taxRate: 0.13,
           image: "images/orange.jpg",
           maxQuantityPerOrder: 5
@@ -30,6 +32,7 @@ app.controller('View1Ctrl', function($scope) {
       {
           name: "Banana",
           price: 0.75,
+          quantity: 0,
           taxRate: 0.13,
           image: "images/banana.jpg",
           maxQuantityPerOrder: 5
@@ -40,8 +43,18 @@ app.controller('View1Ctrl', function($scope) {
     $scope.addItem = function(product)
     {
         if(product){
-            $scope.orders.push({name: product.name, price: product.price, taxRate: product.taxRate,
-            maxQuantityPerOrder: product.maxQuantityPerOrder});
+            if(product.quantity>0 && product.quantity<=5) {
+                $scope.orders.push({
+                    name: product.name, price: product.price, quantity: product.quantity, taxRate: product.taxRate,
+                    maxQuantityPerOrder: product.maxQuantityPerOrder
+                });
+            }
+            if(product.quantity>product.maxQuantityPerOrder){
+                alert("You cannot order more than "+product.maxQuantityPerOrder +" "+ product.name +"s");
+            }
+            if(product.quantity<0){
+                alert("You need to add a quantity");
+            }
         }
     }
 
@@ -49,7 +62,7 @@ app.controller('View1Ctrl', function($scope) {
 
     $scope.setTotalPrice = function(order){
         if(order){
-            $scope.totalPrice += order.price;}
+            $scope.totalPrice += (((order.price*order.taxRate)+order.price)*order.quantity);}
 
     }
 

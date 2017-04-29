@@ -8,27 +8,38 @@
         <center><img ng-src = "{{product.image}}"/>
            <h3>{{product.name}}</h3>
            <label>Price: {{product.price}}</label>
+            <input type = "text" ng-model = "product.quantity">
            <button type = "button" ng-click = "addItem(product)">Buy Now</button></center>
     </div>
 </div>
-<h3>Order Totals</h3>
-<table class = "table">
+<div class = "panel panel-primary" id = "orderTot">
+    <div class="panel-heading">
+    <h3>Order Totals</h3>
+    </div>
+    <div class ="panel-heading">
+    <table class = "table">
     <thead>
     <tr>
         <th>Product</th>
+        <th>Quantity</th>
         <th>Price</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat = "order in orders" ng-init = "setTotalPrice(order)">
         <td>{{order.name}}</td>
-        <td>${{order.price}}</td>
+        <td>{{order.quantity}}</td>
+        <td>${{((order.price*order.taxRate)+order.price)*order.quantity}}</td>
+
     </tr>
     <tr>
         <td>Total</td>
         <td>${{totalPrice}}</td>
+
     </tr>
     </tbody>
 </table>
+    </div>
+</div>
 </body>
 </html>
