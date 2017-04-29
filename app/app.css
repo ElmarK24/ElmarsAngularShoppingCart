@@ -1,0 +1,42 @@
+/* app css stylesheet */
+#product{
+  padding: 6px;
+}
+
+#prodcat{
+  width:100px;
+  max-width:100px;
+  height:180px;
+  max-height:180px;
+  padding:5px;
+  border:2px dashed #000;
+  float:left;
+  margin:10px;
+}
+#prodcat img{
+  height: 70px;
+  width: 70px;
+}
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}

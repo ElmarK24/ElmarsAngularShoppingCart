@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head></head>
+<body ng-app = "myApp.view1" ng-controller="View1Ctrl">
+<h2><center>Catalog</center></h2>
+<div id = "product">
+    <div id="prodcat" ng-repeat="product in catalogOfProducts">
+        <center><img ng-src = "{{product.image}}"/>
+           <h3>{{product.name}}</h3>
+           <label>Price: {{product.price}}</label>
+           <button type = "button" ng-click = "addItem(product)">Buy Now</button></center>
+    </div>
+</div>
+<h3>Order Totals</h3>
+<table class = "table">
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat = "order in orders" ng-init = "setTotalPrice(order)">
+        <td>{{order.name}}</td>
+        <td>${{order.price}}</td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>${{totalPrice}}</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
