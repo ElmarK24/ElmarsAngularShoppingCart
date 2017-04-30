@@ -30,7 +30,7 @@
         <td>{{order.name}}</td>
         <td>{{order.quantity}}</td>
         <td>${{((order.price*order.taxRate)+order.price)*order.quantity}}</td>
-
+        <td><button type = "button" ng-click = "removeItem(order)" class = "btn btn-danger">Remove</button></td>
     </tr>
     <tr>
         <td>Total</td>

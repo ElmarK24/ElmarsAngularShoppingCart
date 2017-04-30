@@ -66,6 +66,12 @@ app.controller('View1Ctrl', function($scope) {
 
     }
 
+    $scope.removeItem = function(order){
+        if(order){
+            $scope.orders.splice($scope.orders.indexOf(order), 1);
+            $scope.totalPrice -= (((order.price*order.taxRate)+order.price)*order.quantity);
+        }
+    }
 
 });
   // function getNewOrder()
