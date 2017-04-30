@@ -8,8 +8,8 @@
         <center><img ng-src = "{{product.image}}"/>
            <h3>{{product.name}}</h3>
            <label>Price: {{product.price}}</label>
-            <input type = "text" ng-model = "product.quantity">
-           <button type = "button" ng-click = "addItem(product)">Buy Now</button></center>
+            <input type = "text" ng-model = "quantity">
+           <button type = "button" ng-click = "addItem(Order, product, quantity)">Buy Now</button></center>
     </div>
 </div>
 <div class = "panel panel-primary" id = "orderTot">
