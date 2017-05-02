@@ -1,6 +1,6 @@
 'use strict';
 (function(global){
-	
+
 	global.ElmarLib = function(){}
     var orderIdInc = 0;
 
@@ -42,7 +42,7 @@
 	function addProductAndLineItemToOrder(Order, Product, Quantity)
 	{
 		Quantity = Quantity || 1;
-
+    //defaults to 1
         if(typeof Quantity !== 'number')
         {
             Quantity = parseInt(Quantity) || 1
@@ -61,20 +61,20 @@
         if(!LineItemToAddTo)
         {
             LineItemToAddTo =  getNewLineItem();
-            LineItemToAddTo.Product = Product
+            LineItemToAddTo.Product = Product;
 
             LineItemToAddTo.Quantity = 0;
 
             Order.LineItems.push(LineItemToAddTo);
         }
 
-        LineItemToAddTo. Quantity += Quantity
+        LineItemToAddTo. Quantity += Quantity;
 
 
 
-        LineItem.Total =  Quantity * Product.Price
+        LineItemToAddTo =  Quantity * Product.Price
 
-		
+
 		// Recalculate SubTotal, Tax and Total
 	}
 
@@ -82,8 +82,8 @@
     {
 
     }
-	
-	
+
+
 })(window)
 
 
@@ -137,10 +137,10 @@ app.controller('View1Ctrl', function($scope) {
 
 
 
-    $scope.addItem = function(order, product, quantity)
+    $scope.addItem = function(Order, product, quantity)
     {
-        debugger;
-        ElmarLib.addProductAndLineItemToOrder(order, product, quantity)
+
+        ElmarLib.addProductAndLineItemToOrder(Order, product, quantity)
 
 
         // if(product){
@@ -161,7 +161,15 @@ app.controller('View1Ctrl', function($scope) {
 
     $scope.totalPrice = 0;
 
-    $scope.setTotalPrice = function(order){
+    $scope.setTotalPrice = function(id, quantity){
+
+        var total = 0;
+        for(var i = 0; i < this.LineItems.length, i++;){
+            var LineItem = this.LineItems[i];
+            if(id == null || LineItem.id == id){
+                total += this.toNumber(quantity*LineItem.price);
+            }
+        }
         // if(order){
         //     $scope.totalPrice += (((order.price*order.taxRate)+order.price)*order.quantity);}
 

@@ -12,34 +12,50 @@
            <button type = "button" ng-click = "addItem(Order, product, quantity)">Buy Now</button></center>
     </div>
 </div>
+<div class = "pull-middle col-md-8">
 <div class = "panel panel-primary" id = "orderTot">
     <div class="panel-heading">
-    <h3>Order Totals</h3>
+    <h4>Order Totals</h4>
     </div>
-    <div class ="panel-heading">
-    <table class = "table">
-    <thead>
-    <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat = "order in orders" ng-init = "setTotalPrice(order)">
-        <td>{{order.name}}</td>
-        <td>{{order.quantity}}</td>
-        <td>${{((order.price*order.taxRate)+order.price)*order.quantity}}</td>
-        <td><button type = "button" ng-click = "removeItem(order)" class = "btn btn-danger">Remove</button></td>
-    </tr>
-    <tr>
-        <td>Total</td>
-        <td>${{totalPrice}}</td>
-        <td><button type = "button" ng-click ="checkOut(orders)" class="btn btn-success">CheckOut</button></td>
+    <div class ="panel-body table-responsive">
+    <table class = "table table-striped">
+        <thead>
+         <tr>
+            <th>Products</th>
+            <th>Quantity</th>
+            <th>Item Total</th>
+         </tr>
+         </thead>
+        <tbody>
+        <tr ng-repeat = "LineItem in Order" ng-init = "setTotalPrice(order)">
+            <td>{{LineItem.product[0]}}</td>
+            <td>{{order.quantity}}</td>
+            <td>${{((order.price*order.taxRate)+order.price)*order.quantity}}</td>
+            <td><button type = "button" ng-click = "removeItem(order)" class = "btn btn-danger">Remove</button></td>
+        </tr>
 
-    </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+    </div>
+    </div>
+</div>
+<div class = "pull-middle col-md-8">
+    <div class = "panel panel-primary">
+        <div class="panel-heading">
+            <h4>Payment</h4>
+        </div>
+        <div class ="panel-body table-responsive">
+            <table class = "table table-condensed">
+                <tbody>
+                <td>Description: </td>
+                <td>Payment Type:       -</td>
+                <td>Payment Amount:     ${{totalPrice}}</td>
+                <td><button type = "button" ng-click ="checkOut(orders)" class="btn btn-success">CheckOut</button></td>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </div>
 </body>
