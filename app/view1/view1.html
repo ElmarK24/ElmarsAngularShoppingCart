@@ -12,7 +12,7 @@
            <button type = "button" ng-click = "addItem(Order, product)">Buy Now</button></center>
     </div>
 </div>
-<div class = "pull-middle col-md-8">
+<div class = "pull-middle col-md-5">
 <div class = "panel panel-primary" id = "orderTot">
     <div class="panel-heading">
     <h4>Order Totals</h4>
@@ -29,7 +29,7 @@
         <tbody>
         <tr ng-repeat = "LineItem in Order.LineItems" >
             <td>{{LineItem.Product.name}}</td>
-           <td> <input type = "text" ng-model = "LineItem.Quantity"></td>
+           <td> <input type = "text" width="40px" ng-model = "LineItem.Quantity"></td>
             <td>${{LineItem.Total}}</td>
             <td><button type = "button" ng-click = "removeItem(LineItem)" class = "btn btn-danger">Remove</button></td>
         </tr>
@@ -40,14 +40,14 @@
     </div>
     </div>
 </div>
-<div class = "pull-middle col-md-8">
-    <div class = "panel panel-primary">
+<div class = "pull-middle col-md-5 payment">
+    <div class = "panel panel-primary" id="payment">
         <div class="panel-heading">
             <h4>Payment</h4>
         </div>
         <div class ="panel-body table-responsive">
             <table class = "table table-condensed">
-                <tbody>
+                <br>
                 <td>Description: </td>
                 <td>Payment Type:       -</td>
                 <td>Payment Amount:     ${{Order.Total}}</td>
