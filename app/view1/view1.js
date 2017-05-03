@@ -29,6 +29,7 @@
     function getNewLineItem()
     {
         return {
+
             CreatedDate: new Date(),
             Product: undefined,
             Quantity: 0,
@@ -39,9 +40,9 @@
     }
 
 
-	function addProductAndLineItemToOrder(Order, Product, Quantity)
+	function addProductAndLineItemToOrder(Order, Product)
 	{
-		Quantity = Quantity || 1;
+		 var Quantity = Quantity || 1;
     //defaults to 1
         if(typeof Quantity !== 'number')
         {
@@ -49,7 +50,7 @@
         }
 
         var LineItemToAddTo
-
+        //adds to existing line item
         for(var i = 0; i < Order.LineItems.length; i++)
         {
             if(Order.LineItems[i].Product.id == Product.id)
@@ -57,13 +58,14 @@
                 LineItemToAddTo = Order.LineItems[i]
             }
         }
-
+        //creates new line item
         if(!LineItemToAddTo)
         {
             LineItemToAddTo =  getNewLineItem();
             LineItemToAddTo.Product = Product;
-
-            LineItemToAddTo.Quantity = 0;
+            LineItemToAddTo.SubTotal = (Product.price * Quantity);
+            LineItemToAddTo.Taxes = (Product.taxRate * LineItemToAddTo.SubTotal);
+            LineItemToAddTo.Total = (LineItemToAddTo.SubTotal + LineItemToAddTo.Taxes);
 
             Order.LineItems.push(LineItemToAddTo);
         }
@@ -71,17 +73,18 @@
         LineItemToAddTo. Quantity += Quantity;
 
 
+        // Recalculate SubTotal, Tax and Total
 
-        LineItemToAddTo =  Quantity * Product.Price
+        Order.SubTotal += LineItemToAddTo.SubTotal;
+        Order.Taxes += LineItemToAddTo.Taxes;
+        Order.Total += LineItemToAddTo.Total;
 
 
-		// Recalculate SubTotal, Tax and Total
+
+
+
+
 	}
-
-	function recalculateTotal(Order)
-    {
-
-    }
 
 
 })(window)
@@ -137,10 +140,10 @@ app.controller('View1Ctrl', function($scope) {
 
 
 
-    $scope.addItem = function(Order, product, quantity)
+    $scope.addItem = function(Order, product)
     {
 
-        ElmarLib.addProductAndLineItemToOrder(Order, product, quantity)
+        ElmarLib.addProductAndLineItemToOrder(Order, product)
 
 
         // if(product){
@@ -159,21 +162,9 @@ app.controller('View1Ctrl', function($scope) {
         // }
     }
 
-    $scope.totalPrice = 0;
 
-    $scope.setTotalPrice = function(id, quantity){
 
-        var total = 0;
-        for(var i = 0; i < this.LineItems.length, i++;){
-            var LineItem = this.LineItems[i];
-            if(id == null || LineItem.id == id){
-                total += this.toNumber(quantity*LineItem.price);
-            }
-        }
-        // if(order){
-        //     $scope.totalPrice += (((order.price*order.taxRate)+order.price)*order.quantity);}
 
-    }
 
     $scope.removeItem = function(order){
         // if(order){
