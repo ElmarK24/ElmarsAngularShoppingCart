@@ -27,11 +27,11 @@
          </tr>
          </thead>
         <tbody>
-        <tr ng-repeat = "LineItem in Order" >
-            <td>{{Order.LineItem.product.name}}</td>
-            <!--<td>{{Order.LineItems.Quantity}}</td>-->
-            <td>${{((order.price*order.taxRate)+order.price)}}</td>
-            <td><button type = "button" ng-click = "removeItem(order)" class = "btn btn-danger">Remove</button></td>
+        <tr ng-repeat = "LineItem in Order.LineItems" >
+            <td>{{LineItem.Product.name}}</td>
+           <td> <input type = "text" ng-model = "LineItem.Quantity"></td>
+            <td>${{LineItem.Total}}</td>
+            <td><button type = "button" ng-click = "removeItem(LineItem)" class = "btn btn-danger">Remove</button></td>
         </tr>
 
         </tbody>
@@ -50,7 +50,7 @@
                 <tbody>
                 <td>Description: </td>
                 <td>Payment Type:       -</td>
-                <td>Payment Amount:     ${{totalPrice}}</td>
+                <td>Payment Amount:     ${{Order.Total}}</td>
                 <td><button type = "button" ng-click ="checkOut(orders)" class="btn btn-success">CheckOut</button></td>
                 </tbody>
             </table>

@@ -166,7 +166,17 @@ app.controller('View1Ctrl', function($scope) {
 
 
 
-    $scope.removeItem = function(order){
+    $scope.removeItem = function(LineItem){
+
+        for(var i = 0; i < LineItems.length; i++)
+        {
+            if(LineItems[i].Product.id == LineItem.Product.id)
+            {
+                LineItem.flumps.splice(LineItem.flumps.indexOf(LineItem.flump), 1);
+            }
+        }
+
+
         // if(order){
         //     $scope.orders.splice($scope.orders.indexOf(order), 1);
         //     $scope.totalPrice -= (((order.price*order.taxRate)+order.price)*order.quantity);
