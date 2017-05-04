@@ -40,9 +40,9 @@
     }
 
 
-	function addProductAndLineItemToOrder(Order, Product)
+	function addProductAndLineItemToOrder(Order, Product, Quantity, AddRemoveOrAbsolute)
 	{
-		 var Quantity = Quantity || 1;
+		  Quantity = Quantity || 1;
     //defaults to 1
         if(typeof Quantity !== 'number')
         {
@@ -63,21 +63,33 @@
         {
             LineItemToAddTo =  getNewLineItem();
             LineItemToAddTo.Product = Product;
-            LineItemToAddTo.SubTotal = (Product.price * Quantity);
-            LineItemToAddTo.Taxes = (Product.taxRate * LineItemToAddTo.SubTotal);
-            LineItemToAddTo.Total = (LineItemToAddTo.SubTotal + LineItemToAddTo.Taxes);
+
 
             Order.LineItems.push(LineItemToAddTo);
         }
 
+
         LineItemToAddTo. Quantity += Quantity;
 
 
-        // Recalculate SubTotal, Tax and Total
+        LineItemToAddTo.SubTotal = (Product.price * LineItemToAddTo.Quantity);
+        LineItemToAddTo.Taxes = (Product.taxRate * LineItemToAddTo.SubTotal);
+        LineItemToAddTo.Total = (LineItemToAddTo.SubTotal + LineItemToAddTo.Taxes);
 
-        Order.SubTotal += LineItemToAddTo.SubTotal;
-        Order.Taxes += LineItemToAddTo.Taxes;
-        Order.Total += LineItemToAddTo.Total;
+        Order.SubTotal = 0;
+        Order.Taxes = 0;
+        Order.Total = 0;
+        // Recalculate SubTotal, Tax and Total
+        for(var i = 0; i < Order.LineItems.length; i ++){
+
+
+            Order.SubTotal += Order.LineItems[i].SubTotal;
+            Order.Taxes += Order.LineItems[i].Taxes;
+            Order.Total += Order.LineItems[i].Total;
+        }
+        // Order.SubTotal += LineItemToAddTo.SubTotal;
+        // Order.Taxes += LineItemToAddTo.Taxes;
+        // Order.Total += LineItemToAddTo.Total;
 
 
 

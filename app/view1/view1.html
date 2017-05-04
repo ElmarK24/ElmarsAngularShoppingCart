@@ -29,7 +29,9 @@
         <tbody>
         <tr ng-repeat = "LineItem in Order.LineItems" >
             <td>{{LineItem.Product.name}}</td>
-           <td> <input type = "text" width="40px" ng-model = "LineItem.Quantity"></td>
+
+            //ng-change
+           <td> <input type = "text"  ng-model = "LineItem.Quantity"></td>
             <td>${{LineItem.Total}}</td>
             <td><button type = "button" ng-click = "removeItem(LineItem)" class = "btn btn-danger">Remove</button></td>
         </tr>
