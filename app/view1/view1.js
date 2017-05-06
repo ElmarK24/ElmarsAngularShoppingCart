@@ -176,9 +176,12 @@ app.controller('View1Ctrl', function($scope) {
         // }
     }
 
-    $scope.ChangeQuantity = function(Order, Product, value){
+    $scope.ChangeQuantity = function(Order, Product, Quantity){
 
-            ElmarLib.addProductAndLineItemToOrder(Order, Product, value);
+
+
+
+         ElmarLib.addProductAndLineItemToOrder(Order, Product, Quantity);
 
            // ElmarLib.Order.LineItems[0].Quantity = value;
 
