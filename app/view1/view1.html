@@ -9,7 +9,7 @@
            <h3>{{product.name}}</h3>
            <label>Price: {{product.price}}</label>
             <!--<input type = "text" ng-model = "Quantity">-->
-           <button type = "button" ng-click = "addItem(Order, product)">Buy Now</button></center>
+           <button type = "button" ng-click = "addItem(Order, product, Quantity, AddRemoveOrAbsolute)">Buy Now</button></center>
     </div>
 </div>
 <div class = "pull-middle col-md-5">
@@ -31,7 +31,7 @@
             <td>{{LineItem.Product.name}}</td>
 
             //ng-change
-           <td> <input type = "text"  ng-model = "LineItem.Quantity"></td>
+           <td> <input type = "text"  ng-model = "Quantity" ng-change="ChangeQuantity( Order.LineItems, Product, Quantity)"></td>
             <td>${{LineItem.Total}}</td>
             <td><button type = "button" ng-click = "removeItem(LineItem)" class = "btn btn-danger">Remove</button></td>
         </tr>

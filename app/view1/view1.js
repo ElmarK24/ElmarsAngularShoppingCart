@@ -40,6 +40,7 @@
     }
 
 
+
 	function addProductAndLineItemToOrder(Order, Product, Quantity, AddRemoveOrAbsolute)
 	{
 		  Quantity = Quantity || 1;
@@ -70,6 +71,7 @@
 
 
         LineItemToAddTo. Quantity += Quantity;
+
 
 
         LineItemToAddTo.SubTotal = (Product.price * LineItemToAddTo.Quantity);
@@ -174,7 +176,17 @@ app.controller('View1Ctrl', function($scope) {
         // }
     }
 
+    $scope.ChangeQuantity = function(Order, Product, value){
 
+            ElmarLib.addProductAndLineItemToOrder(Order, Product, value);
+
+           // ElmarLib.Order.LineItems[0].Quantity = value;
+
+
+        //Quantity = value;
+
+
+    }
 
 
 
