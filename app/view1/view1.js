@@ -44,6 +44,7 @@
 	function addProductAndLineItemToOrder(Order, Product, Quantity, AddRemoveOrAbsolute)
 	{
 		  Quantity = Quantity || 1;
+
     //defaults to 1
         if(typeof Quantity !== 'number')
         {
@@ -69,8 +70,16 @@
             Order.LineItems.push(LineItemToAddTo);
         }
 
+        if(AddRemoveOrAbsolute== "Add"){
+            LineItemToAddTo.Quantity += Quantity;
+        }
+        else if(AddRemoveOrAbsolute=="Remove"){
+            LineItemToAddTo.Quantity -= Quantity;
+        }
+        else if(AddRemoveOrAbsolute=="Absolute"){
+                LineItemToAddTo.Quantity = Quantity;
+        }
 
-        LineItemToAddTo. Quantity += Quantity;
 
 
 
